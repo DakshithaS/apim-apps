@@ -1087,9 +1087,8 @@ class Details extends Component {
                                     <Route
                                         path={Details.subPaths.OVERVIEW_PRODUCT}
                                         key={Details.subPaths.OVERVIEW_PRODUCT}
-                                        render={(props) => (
+                                        component={() => (
                                             <Overview
-                                                {...props}
                                                 setOpenPageSearch={this.setOpenPageSearch}
                                                 api={api}
                                             />
@@ -1097,9 +1096,8 @@ class Details extends Component {
                                     />
                                     <Route
                                         path={Details.subPaths.OVERVIEW}
-                                        render={(props) => (
+                                        component={() => (
                                             <Overview
-                                                {...props}
                                                 setOpenPageSearch={this.setOpenPageSearch}
                                                 api={api}
                                             />
@@ -1108,9 +1106,8 @@ class Details extends Component {
                                     <Route
                                         path={Details.subPaths.OVERVIEW_MCP}
                                         key={Details.subPaths.OVERVIEW_MCP}
-                                        render={(props) => (
+                                        component={() => (
                                             <Overview
-                                                {...props}
                                                 setOpenPageSearch={this.setOpenPageSearch}
                                                 api={api}
                                             />
@@ -1118,83 +1115,81 @@ class Details extends Component {
                                     />
                                     <Route
                                         path={Details.subPaths.API_DEFINITION}
-                                        render={(props) => <APIDefinition {...props} api={api}
+                                        component={() => <APIDefinition api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.WSDL}
-                                        render={(props) => <WSDL {...props} api={api} />}
+                                        component={() => <WSDL api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.API_DEFINITION_PRODUCT}
-                                        render={(props) => <APIDefinition {...props} api={api} />}
+                                        component={() => <APIDefinition api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.SCHEMA_DEFINITION}
-                                        render={(props) => <APIDefinition {...props} api={api} />}
+                                        component={() => <APIDefinition api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.ASYNCAPI_DEFINITION}
-                                        render={(props) => <APIDefinition {...props} api={api}
+                                        component={() => <APIDefinition api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.LIFE_CYCLE}
-                                        render={(props) => <LifeCycle {...props} api={api} />}
+                                        component={() => <LifeCycle api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.LIFE_CYCLE_PRODUCT}
-                                        render={(props) => (
-                                            <LifeCycle {...props} api={api} isAPIProduct={isAPIProduct} />
-                                        )}
+                                        component={() => <LifeCycle api={api} isAPIProduct={isAPIProduct} />}
                                     />
                                     <Route
                                         path={Details.subPaths.LIFE_CYCLE_MCP}
-                                        render={(props) => <LifeCycle {...props} api={api} isMCPServer={isMCPServer} />}
+                                        component={() => <LifeCycle api={api} isMCPServer={isMCPServer} />}
                                     />
                                     <Route
                                         path={Details.subPaths.CONFIGURATION}
-                                        render={(props) => <DesignConfigurations {...props} api={api}
+                                        component={() => <DesignConfigurations api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.RUNTIME_CONFIGURATION}
-                                        render={(props) => <RuntimeConfiguration {...props} api={api} />}
+                                        component={() => <RuntimeConfiguration api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.RUNTIME_CONFIGURATION_WEBSOCKET}
-                                        render={(props) => <RuntimeConfigurationWebSocket {...props} api={api} />}
+                                        component={() => <RuntimeConfigurationWebSocket api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.TOPICS}
-                                        render={(props) => <Topics {...props} api={api}
+                                        component={() => <Topics api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.CONFIGURATION_PRODUCT}
-                                        render={(props) => <DesignConfigurations {...props} api={api}
+                                        component={() => <DesignConfigurations api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.RUNTIME_CONFIGURATION_PRODUCT}
-                                        render={(props) => <RuntimeConfiguration {...props} api={api} />}
+                                        component={() => <RuntimeConfiguration api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.CONFIGURATION_MCP}
-                                        render={(props) => <DesignConfigurations {...props} api={api}
+                                        component={() => <DesignConfigurations api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.RUNTIME_CONFIGURATION_MCP}
-                                        render={(props) => <RuntimeConfiguration {...props} api={api} />}
+                                        component={() => <RuntimeConfiguration api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.ENDPOINTS}
-                                        render={(props) => <Endpoint {...props} />}
+                                        component={() => <Endpoint />}
                                     />
                                     <Route
                                         path={Details.subPaths.ENDPOINTS_MCP}
-                                        render={(props) => <Endpoint {...props} />}
+                                        component={() => <Endpoint />}
                                     />
                                     <Route
                                         path={Details.subPaths.ENVIRONMENTS}
@@ -1210,7 +1205,7 @@ class Details extends Component {
                                     />
                                     <Route
                                         path={Details.subPaths.OPERATIONS}
-                                        render={(props) => <Operations {...props} api={api}
+                                        component={() => <Operations api={api}
                                             componentValidator={settings &&
                                                 settings.gatewayFeatureCatalog
                                                     .gatewayFeatures
@@ -1241,140 +1236,133 @@ class Details extends Component {
                                     {settings && settings.gatewayFeatureCatalog
                                         .gatewayFeatures[api.gatewayType ? api.gatewayType : 'wso2/synapse']
                                         .localScopes.includes("operationScopes") &&
-                                        <Route path={Details.subPaths.SCOPES} render={(props) =>
-                                            <Scope {...props} api={api} />} />
+                                        <Route path={Details.subPaths.SCOPES} component={() =>
+                                            <Scope api={api} />} />
                                     }
                                     <Route
                                         path={Details.subPaths.SCOPES_MCP}
-                                        render={(props) => <Scope {...props} api={api} />}
+                                        component={() => <Scope api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.DOCUMENTS}
-                                        render={(props) => <Documents {...props} api={api} />}
+                                        component={() => <Documents api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.DOCUMENTS_PRODUCT}
-                                        render={(props) => <Documents {...props} api={api} />}
+                                        component={() => <Documents api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.DOCUMENTS_MCP}
-                                        render={(props) => <Documents {...props} api={api} />}
+                                        component={() => <Documents api={api} />}
                                     />
                                     {settings && settings.gatewayFeatureCatalog
                                         .gatewayFeatures[api.gatewayType ? api.gatewayType : 'wso2/synapse']
                                         .subscriptions.includes("subscriptions") &&
                                         <Route
                                             path={Details.subPaths.SUBSCRIPTIONS}
-                                            render={(props) => <Subscriptions {...props} api={api}
+                                            component={() => <Subscriptions api={api}
                                                 updateAPI={this.updateAPI} />}
                                         />
                                     }
                                     <Route
                                         path={Details.subPaths.SUBSCRIPTIONS_PRODUCT}
-                                        render={(props) => <Subscriptions {...props} api={api}
+                                        component={() => <Subscriptions api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
                                     <Route
                                         path={Details.subPaths.SUBSCRIPTIONS_MCP}
-                                        render={(props) => <Subscriptions {...props} api={api}
+                                        component={() => <Subscriptions api={api}
                                             updateAPI={this.updateAPI} />}
                                     />
-                                    <Route path={Details.subPaths.SECURITY} render={(props) =>
-                                        <Security {...props} api={api} />} />
-                                    <Route path={Details.subPaths.COMMENTS} render={(props) =>
-                                        <Comments {...props} api={api} />} />
-                                    <Route path={Details.subPaths.COMMENTS_MCP} render={(props) =>
-                                        <Comments {...props} api={api} />}
+                                    <Route path={Details.subPaths.SECURITY} component={() =>
+                                        <Security api={api} />} />
+                                    <Route path={Details.subPaths.COMMENTS} component={() =>
+                                        <Comments api={api} />} />
+                                    <Route path={Details.subPaths.COMMENTS_MCP} component={() =>
+                                        <Comments api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.BUSINESS_INFO}
-                                        render={(props) => <BusinessInformation {...props} api={api} />}
+                                        component={() => <BusinessInformation api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.BUSINESS_INFO_PRODUCT}
-                                        render={(props) => <BusinessInformation {...props} api={api} />}
+                                        component={() => <BusinessInformation api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.BUSINESS_INFO_MCP}
-                                        render={(props) => <BusinessInformation {...props} api={api} />}
+                                        component={() => <BusinessInformation api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.PROPERTIES}
-                                        render={(props) => <Properties {...props} api={api} />}
+                                        component={() => <Properties api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.PROPERTIES_PRODUCT}
-                                        render={(props) => <Properties {...props} api={api} />}
+                                        component={() => <Properties api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.PROPERTIES_MCP}
-                                        render={(props) => <Properties {...props} api={api} />}
+                                        component={() => <Properties api={api} />}
                                     />
-                                    <Route
-                                        path={Details.subPaths.SHARE}
-                                        render={(props) => (
-                                            <ShareAPI {...props} api={api} updateAPI={this.updateAPI} />
-                                        )}
-                                    />
-                                    <Route
-                                        path={Details.subPaths.NEW_VERSION}
-                                        render={(props) => <CreateNewVersion {...props} />}
-                                    />
+                                    <Route path={Details.subPaths.SHARE} component={() => <ShareAPI
+                                        api={api} updateAPI={this.updateAPI} />} />
+                                    <Route path={Details.subPaths.NEW_VERSION} component={() => <CreateNewVersion />} />
                                     <Route
                                         path={Details.subPaths.NEW_VERSION_PRODUCT}
-                                        render={(props) => <CreateNewVersion {...props} />}
+                                        component={() => <CreateNewVersion />}
                                     />
                                     <Route
                                         path={Details.subPaths.NEW_VERSION_MCP}
-                                        render={(props) => <CreateNewVersion {...props} />}
+                                        component={() => <CreateNewVersion />}
                                     />
 
-                                    <Route path={Details.subPaths.SUBSCRIPTIONS} render={(props) =>
-                                        <Subscriptions {...props} />} />
+                                    <Route path={Details.subPaths.SUBSCRIPTIONS} component={() =>
+                                        <Subscriptions />} />
                                     {settings && settings.gatewayFeatureCatalog
                                         .gatewayFeatures[api.gatewayType ? api.gatewayType : 'wso2/synapse']
                                         .monetization.includes("monetization") &&
                                         <Route
                                             path={Details.subPaths.MONETIZATION}
-                                            render={(props) => <Monetization {...props} api={api} />}
+                                            component={() => <Monetization api={api} />}
                                         />
                                     }
                                     <Route
                                         path={Details.subPaths.MONETIZATION_PRODUCT}
-                                        render={(props) => <Monetization {...props} api={api} />}
+                                        component={() => <Monetization api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.TRYOUT}
-                                        render={(props) => <TryOutConsole {...props} apiObj={api} />}
+                                        component={() => <TryOutConsole apiObj={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.TRYOUT_PRODUCT}
-                                        render={(props) => <TryOutConsole {...props} apiObj={api} />}
+                                        component={() => <TryOutConsole apiObj={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.MCP_PLAYGROUND}
-                                        render={(props) => <TryOutConsole {...props} apiObj={api} />}
+                                        component={() => <TryOutConsole apiObj={api} />}
                                     />
                                     <Route path={Details.subPaths.EXTERNAL_STORES}
                                         component={ExternalStores} />
                                     <Route
                                         path={Details.subPaths.COMMENTS}
-                                        render={(props) => <Comments {...props} apiObj={api} />}
+                                        component={() => <Comments apiObj={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.POLICIES}
-                                        render={(props) => <Policies {...props} api={api} />}
+                                        component={() => <Policies api={api} />}
                                     />
                                     <Route
                                         path={Details.subPaths.COMPLIANCE}
-                                        render={(props) => {
+                                        component={() => {
                                             return (
                                                 !isAPIProduct &&
                                                 !api.isGraphql() &&
                                                 !api.isSOAPToREST() &&
                                                 !api.isSOAP() ?
                                                     (
-                                                        <Compliance {...props} api={api} />
+                                                        <Compliance api={api} />
                                                     ) : (
                                                         <ResourceNotFound />
                                                     )

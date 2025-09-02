@@ -38,20 +38,20 @@ const Endpoint = () => {
             <Route
                 exact
                 path={ urlPrefix + ':api_uuid/endpoints/'}
-                render={(props) => <Endpoints {...props} api={api} />}
+                component={() => <Endpoints api={api} />}
             />
             {!isRestricted(['apim:api_create']) && !isMCPServer && (
                 <Route
                     exact
                     path={urlPrefix + ':api_uuid/endpoints/create'}
-                    render={(props) => <AddEditAIEndpoint apiObject={api} {...props} />}
+                    component={(props) => <AddEditAIEndpoint apiObject={api} {...props} />}
                 />
             )}
             {!isRestricted(['apim:api_view', 'apim:api_create']) && !isMCPServer && (
                 <Route
                     exact
                     path={urlPrefix + ':api_uuid/endpoints/:id'}
-                    render={(props) => <AddEditAIEndpoint apiObject={api} {...props} />}
+                    component={(props) => <AddEditAIEndpoint apiObject={api} {...props} />}
                 />
             )}
 
